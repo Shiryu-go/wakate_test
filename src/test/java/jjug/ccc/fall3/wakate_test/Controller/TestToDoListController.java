@@ -9,16 +9,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.ResultMatcher;
 
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import static org.mockito.Mockito.doReturn;
-import static org.springframework.test.web.client.match.MockRestRequestMatchers.content;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -45,13 +42,17 @@ class TestToDoListController {
         ToDoList toDoList = new ToDoList("今日の買い物リスト",list);
         doReturn(toDoList).when(toDoListService).findAll();
 
-        mockMvc.perform(
+        String responseBody = mockMvc.perform(
                 get("/")
         )
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.length()").value(2))
-                .andExpect(jsonPath("$[0].ToDo_ttitle()").value("白菜"))
-                .andExpect(jsonPath("$[1].ToDo_ttitle()").value("にんにく"));
+                .andExpect(jsonPath("$.toDo[0].ToDo_Title").value("白菜"))
+                .andExpect(jsonPath("$.toDo[1].ToDo_Title").value("にんにく"))
+                .andReturn().getResponse().getContentAsString(Charset.forName("UTF-8"));
+        String json = objectMapper.writerWithDefaultPrettyPrinter()
+                .writeValueAsString(objectMapper.readTree(responseBody));
+        System.out.println(json);
 
     }
 
