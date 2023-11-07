@@ -11,6 +11,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -49,7 +50,7 @@ class TestToDoListController {
                 .andExpect(jsonPath("$.length()").value(2))
                 .andExpect(jsonPath("$.toDo[0].ToDo_Title").value("白菜"))
                 .andExpect(jsonPath("$.toDo[1].ToDo_Title").value("にんにく"))
-                .andReturn().getResponse().getContentAsString(Charset.forName("UTF-8"));
+                .andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8);
         String json = objectMapper.writerWithDefaultPrettyPrinter()
                 .writeValueAsString(objectMapper.readTree(responseBody));
         System.out.println(json);
