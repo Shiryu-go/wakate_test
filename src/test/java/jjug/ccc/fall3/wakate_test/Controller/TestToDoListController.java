@@ -2,6 +2,7 @@ package jjug.ccc.fall3.wakate_test.Controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jjug.ccc.fall3.wakate_test.Record.ToDo;
+import jjug.ccc.fall3.wakate_test.Record.ToDoList;
 import jjug.ccc.fall3.wakate_test.Service.ToDoListService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,11 +37,14 @@ class TestToDoListController {
 
     @Test
     void test_getTodoList()throws Exception{
-        List<ToDo> toDoList = new ArrayList<>();
+        List<ToDo> list = new ArrayList<>();
         ToDo todo1 = new ToDo("白菜","説明を入力",false,new Date(2023/11/7));
         ToDo todo2 = new ToDo("にんにく","説明を入力",false,new Date(2023/11/7));
+        list.add(todo1);
+        list.add(todo2);
+        ToDoList toDoList = new ToDoList("今日の買い物リスト",list);
         doReturn(toDoList).when(toDoListService).findAll();
-        toDoList.add(todo1);
+
         mockMvc.perform(
                 get("/")
         )

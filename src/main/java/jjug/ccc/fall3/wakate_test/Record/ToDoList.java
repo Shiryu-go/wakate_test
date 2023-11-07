@@ -1,5 +1,5 @@
 package jjug.ccc.fall3.wakate_test.Record;
 
-import java.util.ArrayList;
+import java.util.List;
 
-public record ToDoList(ArrayList<ToDo> toDo, int projectNumber){}
+public record ToDoList(String title , List<ToDo> toDo){}
