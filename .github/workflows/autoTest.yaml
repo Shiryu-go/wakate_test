@@ -1,8 +1,7 @@
 name: プッシュ時の自動テスト
 run-name: App Engine Deploy
 on:
-  pull_request:
-    types: [opened]
+  push:
     branches: [ main ]
 jobs:
   gradle:
