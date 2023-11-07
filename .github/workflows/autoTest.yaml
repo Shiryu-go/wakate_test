@@ -1,0 +1,31 @@
+name: プッシュ時の自動テスト
+run-name: App Engine Deploy
+on:
+  pull_request:
+    types: [opened]
+    branches: [ main ]
+jobs:
+  gradle:
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+    permissions:
+      contents: 'read'
+      id-token: 'write'
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: main
+      - uses: actions/setup-java@v3
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - name: Setup Gradle
+        uses: gradle/gradle-build-action@v2
+
+      - name: Execute Gradle  Testß
+        run:
+          cd demo;
+          ./gradlew test;
