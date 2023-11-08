@@ -8,5 +8,5 @@ public record ToDo(
         String ToDo_Title,
         String ToDo_Description,
         Boolean Done,
-        Date deadline
+        String deadline
 ) {}
