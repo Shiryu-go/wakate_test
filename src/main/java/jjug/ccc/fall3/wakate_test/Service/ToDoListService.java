@@ -10,6 +10,6 @@ public class ToDoListService {
     @Autowired
     ToDoListRepository toDoListRepository;
     public ToDoList findAll() {
-        return toDoListRepository.findAll();
+        return new ToDoList(1,"買い物リスト",toDoListRepository.findAll());
     }
 }
