@@ -30,6 +30,4 @@ public class TestTodoListRepository {
         assertThat(toDoList.toDo().size()).isEqualTo(2);
         assertThat(toDoList.toDo().get(0).ToDo_Title()).isEqualTo("白菜");
     }
-
-
 }
