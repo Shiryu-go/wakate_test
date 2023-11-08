@@ -13,3 +13,15 @@ CREATE TABLE ToDo (
     FOREIGN KEY (ListId) REFERENCES ToDoList(ListId)
 );
 
+INSERT INTO ToDoList
+(ListId, title) VALUES
+(1, '買い物リスト')
+,(2, 'スタンプラリー箇所')
+;
+
+INSERT INTO ToDo
+(ListId, id , ToDo_Title , ToDo_Description , Done , deadline) VALUES
+(1,1, '白菜','入力してください',false,'2023-11-08')
+,(1,2, 'ほうれん草','入力してください',false,'2023-11-08')
+;
+
