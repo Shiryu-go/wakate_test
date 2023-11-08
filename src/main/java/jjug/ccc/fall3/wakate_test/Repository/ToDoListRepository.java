@@ -1,8 +1,11 @@
 package jjug.ccc.fall3.wakate_test.Repository;
 
-import jjug.ccc.fall3.wakate_test.Record.ToDoList;
+import jjug.ccc.fall3.wakate_test.Record.ToDo;
+import org.springframework.jdbc.core.DataClassRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
 public class ToDoListRepository {
@@ -12,7 +15,7 @@ public class ToDoListRepository {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public ToDoList findAll() {
-        return null;
+    public List<ToDo> findAll() {
+        return jdbcTemplate.query("SELECT * FROM todo where ListId = 1",new DataClassRowMapper<>(ToDo.class));
     }
 }
