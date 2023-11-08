@@ -11,7 +11,7 @@ import org.springframework.test.context.jdbc.Sql;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @JdbcTest
-@Sql("TestTodoListRepository")
+@Sql("TestTodoListRepository.sql")
 public class TestTodoListRepository {
     @Autowired
     JdbcTemplate jdbecTemplate;
@@ -24,11 +24,11 @@ public class TestTodoListRepository {
     }
 
     @Test
-    void findAll() {
-        ToDoList toDoList = toDoListRepository.findAll();
-        assertThat(product.getName()).isEqualTo("消しゴム");
-        assertThat(product.getPrice()).isEqualTo(100);
-        assertThat(product.getStock()).isEqualTo(10);
+    void TestFindAll() {
+        ToDoList toDoList = new ToDoList(1,"買い物リスト",toDoListRepository.findAll());
+        assertThat(toDoList.title()).isEqualTo("買い物リスト");
+        assertThat(toDoList.toDo().size()).isEqualTo(2);
+        assertThat(toDoList.toDo().get(0).ToDo_Title()).isEqualTo("白菜");
     }
 
 
