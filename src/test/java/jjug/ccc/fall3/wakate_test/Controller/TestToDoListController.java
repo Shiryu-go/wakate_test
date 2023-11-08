@@ -35,8 +35,8 @@ class TestToDoListController {
     @Test
     void test_getTodoList()throws Exception{
         List<ToDo> list = new ArrayList<>();
-        ToDo todo1 = new ToDo(1,"白菜","説明を入力",false,new Date(2023/11/7));
-        ToDo todo2 = new ToDo(2,"にんにく","説明を入力",false,new Date(2023/11/7));
+        ToDo todo1 = new ToDo(1,1,"白菜","説明を入力",false,new Date(2023/11/7));
+        ToDo todo2 = new ToDo(1,2,"にんにく","説明を入力",false,new Date(2023/11/7));
         list.add(todo1);
         list.add(todo2);
         ToDoList toDoList = new ToDoList(1,"今日の買い物リスト",list);
