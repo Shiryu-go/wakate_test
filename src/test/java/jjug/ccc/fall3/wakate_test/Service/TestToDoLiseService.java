@@ -4,7 +4,6 @@ package jjug.ccc.fall3.wakate_test.Service;
 import jjug.ccc.fall3.wakate_test.Record.ToDo;
 import jjug.ccc.fall3.wakate_test.Record.ToDoList;
 import jjug.ccc.fall3.wakate_test.Repository.ToDoListRepository;
-import jjug.ccc.fall3.wakate_test.Repository.ToDoRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
