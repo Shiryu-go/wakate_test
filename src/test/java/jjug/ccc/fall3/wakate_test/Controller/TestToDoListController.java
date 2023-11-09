@@ -45,7 +45,7 @@ class TestToDoListController {
                 get("/")
         )
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.length()").value(2))
+                .andExpect(jsonPath("$.toDo.length()").value(2))
                 .andExpect(jsonPath("$.toDo[0].ToDo_Title").value("白菜"))
                 .andExpect(jsonPath("$.toDo[1].ToDo_Title").value("にんにく"))
                 .andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8);
