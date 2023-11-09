@@ -30,7 +30,6 @@ public class TestToDoLiseService {
         ToDo todo2 = new ToDo(1,2,"にんにく","説明を入力",false,"2023-11-07");
         list.add(todo1);
         list.add(todo2);
-        ToDoList toDoList = new ToDoList(1,"今日の買い物リスト",list);
         doReturn(list).when(toDoListRepository).findAll();
         ToDoList toDoList1 = toDoListService.findAll();
 
