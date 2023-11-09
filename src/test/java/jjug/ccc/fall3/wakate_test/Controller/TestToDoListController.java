@@ -41,7 +41,6 @@ class TestToDoListController {
         list.add(todo2);
         ToDoList toDoList = new ToDoList(1,"今日の買い物リスト",list);
         doReturn(toDoList).when(toDoListService).findAll();
-
         String responseBody = mockMvc.perform(
                 get("/")
         )
@@ -53,6 +52,5 @@ class TestToDoListController {
         String json = objectMapper.writerWithDefaultPrettyPrinter()
                 .writeValueAsString(objectMapper.readTree(responseBody));
         System.out.println(json);
-
     }
 }
