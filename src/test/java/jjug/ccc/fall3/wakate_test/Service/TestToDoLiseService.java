@@ -31,7 +31,7 @@ public class TestToDoLiseService {
         list.add(todo1);
         list.add(todo2);
         ToDoList toDoList = new ToDoList(1,"今日の買い物リスト",list);
-        doReturn(toDoList).when(toDoListRepository).findAll();
+        doReturn(list).when(toDoListRepository).findAll();
         ToDoList toDoList1 = toDoListService.findAll();
 
         assertThat(toDoList1.toDo().get(0).ToDo_Title()).isEqualTo("白菜");
