@@ -10,9 +10,19 @@ import org.springframework.test.context.jdbc.Sql;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+/*
+データベースのテストを行うための宣言
+ */
 @JdbcTest
+/*
+組み込みデータベースに対して、Sqlの実行を行なっている。
+このテストクラスでは、このSQlの処理を行なったデータベースに対してアクセスを行う。
+ */
 @Sql("TestTodoListRepository.sql")
 public class TestTodoListRepository {
+    /*
+    今回はjdbcTestを使用します。
+     */
     @Autowired
     JdbcTemplate jdbecTemplate;
 
@@ -20,6 +30,9 @@ public class TestTodoListRepository {
 
     @BeforeEach
     void setUp(){
+        /*
+        jdbcTemplateの使用準備
+         */
         toDoListRepository = new ToDoListRepository(jdbecTemplate);
     }
 

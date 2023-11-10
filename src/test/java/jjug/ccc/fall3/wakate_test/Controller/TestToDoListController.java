@@ -23,23 +23,47 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class TestToDoListController {
 
     @Autowired
+    /*
+    参考URL : https://spring.pleiades.io/guides/gs/testing-web/
+    SpringのMVCモデル用のテスト用クラスの依存性解決。
+    実際のHTTPリクエストの代わりに、シミュレーションを行なってくれる。
+     */
     MockMvc mockMvc;
 
+
     @MockBean
+    /*
+    Beanの置き換え処理を行なってくれるアノテーション。
+    */
     ToDoListService toDoListService;
 
     @Autowired
+    /*
+    JSON型の文字列を、Javaクラスインスタンスの所持する変数に置き換えてくれるクラス。
+    依存性の自動注入を行なっている。
+    */
     ObjectMapper objectMapper;
 
     @Test
     void test_getTodoList()throws Exception{
+        /*
+        Mockの動作定義処理に必要な前処理工程
+         */
+
         List<ToDo> list = new ArrayList<>();
         ToDo todo1 = new ToDo(1,1,"白菜","説明を入力",false,"2023-11-07");
         ToDo todo2 = new ToDo(1,2,"にんにく","説明を入力",false,"2023-11-07");
         list.add(todo1);
         list.add(todo2);
         ToDoList toDoList = new ToDoList(1,"今日の買い物リスト",list);
+        /*
+         Mockの動作定義処理
+         */
         doReturn(toDoList).when(toDoListService).findAll();
+
+        /*
+        MockMVCによるHTTPリクエストのシミュレーション
+         */
         String responseBody = mockMvc.perform(
                 get("/")
         )
@@ -50,6 +74,9 @@ class TestToDoListController {
                 .andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8);
         String json = objectMapper.writerWithDefaultPrettyPrinter()
                 .writeValueAsString(objectMapper.readTree(responseBody));
+        /*
+        レスポンスボディのログ出力
+         */
         System.out.println(json);
     }
 }
