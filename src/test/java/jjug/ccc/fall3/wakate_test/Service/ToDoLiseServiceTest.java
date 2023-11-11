@@ -17,7 +17,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.doReturn;
 
 @ExtendWith(MockitoExtension.class)
-public class TestToDoLiseService {
+public class ToDoLiseServiceTest {
     /*
     Mockを注入するためのアノテーション。
     これを仕様することで、Serviceクラスの依存性を自動的に解決してくれる。

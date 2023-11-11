@@ -19,7 +19,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 このテストクラスでは、このSQlの処理を行なったデータベースに対してアクセスを行う。
  */
 @Sql("TestTodoListRepository.sql")
-public class TestTodoListRepository {
+public class TodoListRepositoryTest {
     /*
     今回はjdbcTestを使用します。
      */
